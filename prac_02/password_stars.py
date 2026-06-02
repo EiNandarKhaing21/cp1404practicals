@@ -1,6 +1,14 @@
-password_length = 8
-password = input("Enter password: ")
-while len(password) < password_length:
-	print("Password length must be at least 8. Please re-enter.")
+def main():
+	password_length = 8
+	password = get_password(password_length)
+	print("*" * len(password))
+
+
+def get_password(password_length):
 	password = input("Enter password: ")
-print("*" * len(password))
+	while len(password) < password_length:
+		print(f"Password length must be at least {password_length}. Please re-enter.")
+		password = input("Enter password: ")
+	return password
+
+main()
