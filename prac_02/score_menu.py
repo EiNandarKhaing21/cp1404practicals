@@ -15,7 +15,8 @@ def main():
             result = determine_score(score)
             print(result)
         elif choice == "S":
-            print("*" * score)
+            star_result = get_stars(score)
+            print(star_result)
         else:
             print("Invalid message!")
         print(MENU)
@@ -38,5 +39,10 @@ def determine_score(score):
         return "Passable"
     else:
         return "Bad"
+
+def get_stars(score):
+    """Return stars"""
+    stars = "*" * score
+    return stars
 
 main()
