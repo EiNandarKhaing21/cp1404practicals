@@ -9,7 +9,7 @@ CODE_TO_NAME = {"QLD": "Queensland", "NSW": "New South Wales","NT": "Northern Te
 print(CODE_TO_NAME)
 
 for state_code, state_name in CODE_TO_NAME.items():
-    print(f"{state_code:<3} is {state_name}.")
+    print(f"{state_code:<3} is {state_name}")
 
 state_code = input("Enter short state: ").upper()
 while state_code != "":
