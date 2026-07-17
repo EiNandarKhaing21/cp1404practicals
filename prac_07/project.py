@@ -6,6 +6,9 @@ class Project:
         self.cost_estimate = float(cost_estimate)
         self.completion_percentage = int(completion_percentage)
 
+    def __lt__(self, other):
+        return self.priority < other.priority
+
     def __str__(self):
         return (f"{self.name}, start: {self.start_date}, "
                 f"priority {self.priority}, cost estimate ${self.cost_estimate:.2f}, "
