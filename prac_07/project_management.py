@@ -1,3 +1,5 @@
+import datetime
+
 from prac_07.project import Project
 
 FILENAME = "projects.txt"
@@ -23,12 +25,12 @@ def main():
         elif choice == "S":
             filename = input("Filename to save: ")
             save_projects(projects, filename)
-        # elif choice == "D":
-        #     display_projects(projects)
-        # elif choice == "F":
-        #     filter_projects_by_date(projects)
-        # elif choice == "A":
-        #     add_new_project(projects)
+        elif choice == "D":
+            display_projects(projects)
+        elif choice == "F":
+            filter_projects_by_date(projects)
+        elif choice == "A":
+            add_project(projects)
         # elif choice == "U":
         #     update_project(projects)
         # elif choice == "Q":
@@ -61,5 +63,42 @@ def save_projects(projects, filename=FILENAME):
         for project in projects:
             out_file.write(f"{project.name}\t{project.start_date}\t{project.priority}\t{project.cost_estimate}\t{project.completion_percentage}")
     print(f"Projects saved to {filename}")
+
+
+def display_projects(projects):
+    """Display complete and incomplete projects sorted by priority"""
+    incomplete = sorted([p for p in projects if p.completion_percentage < 100])
+    completed = sorted([p for p in projects if p.completion_percentage == 100])
+
+    print("\nIncomplete projects:")
+    for p in incomplete:
+        print(p)
+    print("\nCompleted projects:")
+    for p in completed:
+        print(p)
+
+
+def filter_projects_by_date(projects):
+    """Filter projects by input date"""
+    date_string = input("Show projects that start after date (dd/mm/yyyy): ")
+    filter_date = datetime.datetime.strptime(date_string, "%d/%m/%Y").date()
+    filtered = [p for p in projects if p.start_date > filter_date]
+    filtered.sort()
+
+    print("\nFiltered projects:")
+    for p in filtered:
+        print(p)
+
+
+def add_projects(projects):
+    """Add new projects from user input."""
+    name = input("Name: ")
+    start_date = input("Start date (dd/mm/yyyy): ")
+    priority = int(input("Priority: "))
+    cost_estimate = float(input("Cost estimate: "))
+    completion = int(input("Completion percentage: "))
+    projects.append(Project(name, start_date, priority, cost_estimate, completion))
+    print(f"{name} added.")
+
 main()
 
