@@ -61,7 +61,10 @@ def save_projects(projects, filename=FILENAME):
     with open(filename, "w", encoding="utf-8-sig") as out_file:
         out_file.write("Name\tStart Date\tPriority\tCost Estimate\tCompletion Percentage\n")
         for project in projects:
-            out_file.write(f"{project.name}\t{project.start_date}\t{project.priority}\t{project.cost_estimate}\t{project.completion_percentage}")
+            out_file.write(
+                f"{project.name}\t{project.start_date.strftime('%d/%m/%Y')}\t"
+                f"{project.priority}\t{project.cost_estimate}\t{project.completion_percentage}\n"
+            )
     print(f"Projects saved to {filename}")
 
 
