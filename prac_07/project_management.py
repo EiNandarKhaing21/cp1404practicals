@@ -31,13 +31,13 @@ def main():
             filter_projects_by_date(projects)
         elif choice == "A":
             add_project(projects)
-        # elif choice == "U":
-        #     update_project(projects)
-        # elif choice == "Q":
-        #     save_choice = input("Save to default file before quitting? (Y/N): ").upper()
-        #     if save_choice == "Y":
-        #         save_projects(projects)
-        #     print("Goodbye!")
+        elif choice == "U":
+            update_project(projects)
+        elif choice == "Q":
+            save_choice = input("Save to default file before quitting? (Y/N): ").upper()
+            if save_choice == "Y":
+                save_projects(projects)
+            print("Goodbye!")
         else:
             print("Invalid choice")
 
@@ -90,7 +90,7 @@ def filter_projects_by_date(projects):
         print(p)
 
 
-def add_projects(projects):
+def add_project(projects):
     """Add new projects from user input."""
     name = input("Name: ")
     start_date = input("Start date (dd/mm/yyyy): ")
@@ -99,6 +99,24 @@ def add_projects(projects):
     completion = int(input("Completion percentage: "))
     projects.append(Project(name, start_date, priority, cost_estimate, completion))
     print(f"{name} added.")
+
+def update_project(projects):
+    """Update completion percentage and/or priority of a project"""
+    for i, project in enumerate(projects, 1):
+        print(f"{i}. {project}")
+    choice = int(input("Project choice: "))
+    project = projects[choice - 1]
+
+    new_completion = input("New completion percentage (leave blank to keep current): ")
+    if new_completion:
+        project.completion_percentage = int(new_completion)
+
+    new_priority = input("New priority (leave blank to keep current): ")
+    if new_priority:
+        project.priority = int(new_priority)
+
+    print("Project updated:", project)
+
 
 main()
 
