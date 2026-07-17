@@ -9,6 +9,9 @@ class Project:
     def __lt__(self, other):
         return self.priority < other.priority
 
+    def __lt__(self, other):
+        return self.start_date < other.start_date
+
     def __str__(self):
         return (f"{self.name}, start: {self.start_date}, "
                 f"priority {self.priority}, cost estimate ${self.cost_estimate:.2f}, "
